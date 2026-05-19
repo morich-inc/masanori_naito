@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>内藤正徳 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>内藤正徳 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#terra-drone">1. Terra Drone株式会社</a>
+  <a href="#caddi">2. キャディ株式会社</a>
+  <a href="#relive">3. 株式会社りらいぶ</a>
+  <a href="#credo-holdings">4. クレドホールディングス株式会社</a>
+</nav>
+<main>
+
+<div class="card" id="terra-drone"><div class="card-inner">
+  <div class="badges"><span class="badge">次世代グローバル事業責任者</span><span class="badge badge-blue">東証グロース</span></div>
+  <div class="co-name">Terra Drone株式会社</div>
+  <div class="co-url"><a href="https://www.terra-drone.net/company/" target="_blank">https://www.terra-drone.net/company/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒150-0036 東京都渋谷区南平台町2番17号 A-PLACE渋谷南平台 4階(2025年6月23日～)</td></tr><tr><th>設立</th><td>2016年3月</td></tr><tr><th>電話番号</th><td>03-6419-7193</td></tr><tr><th>上場区分</th><td>東証グロース</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>ドローンサービス企業ランキングで世界1位に選出</li><li>累計資金調達額126億円の急成長企業</li><li>10か国でグローバル展開中</li><li>IPOの先を見据えた体制構築フェーズ</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">テラモーターズ社代表が「ドローンビジネスをやりたい」という想いの下、0から立ち上げられた企業です。ハードは中国にある会社が8割以上占めていますが、ソフトウェア開発に関しては、世界に点在している既にある各国の企業へ出資をし展開を広げていっています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>テラモーターズ社代表が&quot;ドローンビジネスをやりたい&quot;という想いの下、0から立ち上げられた企業です。ハードは中国にある会社が8割以上占めていますが、ソフトウェア開発に関しては、世界に点在している既にある各国の企業へ出資をし展開を広げていっています。</p><p><strong>世界での実績</strong></p><ul><li>ドローンのサービスプロバイダーランキング世界9位</li><li>$500+ Million Utility Drones Market - Global Forecast to 2023 で今後将来性のあるドローンの優良企業12選にも選出</li><li>世界的なドローン市場調査機関のDrone Industry Insightsによる&quot;ドローンサービス企業 世界ランキング2020&quot;において、産業用ドローンサービス企業部門の世界1位に選出</li></ul><p><strong>日本国内での実績</strong></p><ul><li>国土地理院にUAVレーザー測量技術を認められ、UAVレーザー測量に関する技術開発チームに選出</li><li>ベンチャー企業日本一を決定するコンテストで最優秀賞</li><li>日立製作所、などの大企業とのオープンイノベーションの取り組み多数</li></ul><p><strong>事業内容</strong></p><ul><li>サービス事業(土木測量、鉱山測量、橋梁、施設点検、オイル&ガス)</li><li>ハードウェア事業(自社機体開発など)</li><li>ソフトウェア事業(ドローンの自動航行アプリ、ドローン専用の画像処理・画像認識ソフトの自社開発)</li><li>UTM(ドローン運行管理システム)</li></ul><p><strong>資金調達実績</strong></p><ul><li>シリーズA：総額15.1億円</li><li>シリーズB：80億円</li><li>2023年1月世界時価総額2位のアラムコのVCよりアジア初の資金調達</li><li>現在累計資金調達額：126億円</li></ul></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 次世代グローバル事業責任者</div>
+          <div class="job-preview">役員直下で事業戦略策定から実行まで担当する責任者ポジション</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>■会社概要</strong></p><p>2016年より&quot;空から世界を進化させる&quot;というミッションを掲げ、東京に本社を置き、国内外の10か国に、自社開発製の特許取得済みである測量用・点検用ドローンを石油ガス・化学・建設業界などへ提供しています。また、世界8か国で既に導入済みの運航管理(UTM)を展開。空飛ぶクルマやドローンの開発及びソリューションを提供するドローンサービスプロバイダーです。ベルギー、オランダ、インドネシア、サウジアラビアに拠点があり、グローバルに展開しています。</p><p><strong>▼直近で発表されている大きなトピックス</strong></p><ul><li>ドローンサービス企業ランキングで世界1位に選出</li><li>2022年シリーズBにて80億円の資金調達、エアモビリティ含む航空システムにおいてのベンチャーとして国交省ファンドから初出資</li><li>2023年1月世界時価総額2位のアラムコのVCよりアジア初の資金調達、サウジアラビアに子会社設立予定(現在累計資金調達額：126億円)</li><li>グローバルコミュニケーション促進を目的とし、コーポレートデザインの刷新</li><li>国土交通省、経済産業省が共同事務局で運営する&quot;空の移動革命に向けた官民協議会&quot;に参画</li></ul><p><strong>▼ポジションの詳細</strong></p><p>役員直下で、経営ミッションの達成、企業価値の向上を実現するために、ビジネスモデル、経営戦略と連動し、テラドローンの事業戦略策定、実行まで実施していただきます。</p><p><strong>＜事業責任者候補＞</strong></p><ul><li>国内事業責任者</li><li>営業/事業企画</li><li>海外セールス</li></ul><p><strong>必須スキル</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>弊社理念への共感</li><li>高い成長意欲</li><li>技術に対する勉強意欲</li><li>ビジネスレベルの英語力</li><li>BS/PL/CFマネジメント経験</li><li>経営課題/事業課題にヒットする施策、プロジェクトのオーナー経験</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>ベンチャー、スタートアップ企業での事業グロース経験</li><li>事業開発経験</li><li>0→1、1→10のフェーズの事業運営経験</li><li>海外との折衝経験</li></ul><p><strong>求める人物像</strong></p><p>海外・国内の各事業部とコミュニケーションを取りながら全社最適をできる方</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">❌ 副業不可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.terra-drone.net/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://speakerdeck.com/terradrone1/terradrone-companyoverview20220405" target="_blank">📊 会社概要資料</a></div>
+</div></div>
+
+<div class="card" id="caddi"><div class="card-inner">
+  <div class="badges"><span class="badge">オープンポジション</span><span class="badge badge-blue">IPO準備中</span></div>
+  <div class="co-name">キャディ株式会社</div>
+  <div class="co-url"><a href="https://caddi-inc.com/" target="_blank">https://caddi-inc.com/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都台東区浅草橋4-2-2 D'sVARIE浅草橋ビル(総合受付6階)</td></tr><tr><th>設立</th><td>2017年11月</td></tr><tr><th>累計資金調達額</th><td>257.3億円</td></tr><tr><th>上場区分</th><td>未上場(IPO準備中)</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>★IPO準備中</li><li>★役員リレーション</li><li>★経営陣とのカジュアル面談スタート可</li><li>事業成長スピードに組織成長が追い付いていない状況で、早期に役員ポストも狙える</li><li>日本発のバーティカルSaaSスタートアップでグローバル展開している稀有な企業</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">2017年11月創業、「モノづくり産業のポテンシャルを解放する」をミッションに、製造業のデジタル変革を推進しています。2018年より製造業の受発注プラットフォームCADDi(現CADDi Manufacturig)をスタート、品質・コスト・納品(QCD)に責任を負い一気通貫の調達支援を提供。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>2017年11月創業、&quot;モノづくり産業のポテンシャルを解放する&quot;をミッションに、製造業のデジタル変革を推進しています。2018年より製造業の受発注プラットフォームCADDi(現CADDi Manufacturig)をスタート、品質・コスト・納品(QCD)に責任を負い一気通貫の調達支援を提供。そこから得た知見を元に、2022年6月には図面データ活用クラウドCADDi Drawerをリリースし、製造業における重要データの資産化を支援しています。2022年よりグローバル展開も開始し、ベトナム・タイ・アメリカを含む世界４カ国で現在事業を展開しています。</p><p><strong>主要顧客</strong></p><p>CADDi Drawerは、現在、スズキ、SUBARU、ミネベアミツミ、NSKをはじめとする日本を代表する自動車メーカー・自動車部品メーカー、パナソニックや日立製作所、富士電機といった総合電機メーカー、川崎重工業、住友重機械工業、IHIといった重工業メーカー、ヤンマー、日立建機といった建設機械会社、東京エレクトロン、荏原製作所といった機械メーカーなどなど、日本を代表する多くの大規模メーカーが導入しています。</p><p><strong>事業統合について</strong></p><p>2024年7月より、祖業である部品調達支援事業(CADDi Manufacturing)とデータプラットフォーム事業(CADDi Drawer)の2つの事業を統合することを発表。製造業のエンジニアリングチェーン・サプライチェーン上のあらゆるデータを解析・関連付け、インサイトを抽出することで、人間の生産活動をより高度化する&quot;製造業AIデータプラットフォームCADDi&quot;として新たに提供をスタートしました。</p><p><strong>成長戦略</strong></p><p>国内外で事業は力強く拡大し、2030年に海外比率5割を目指し、大型IPOに向けた戦略的投資を進めています。事業成長に伴いCSおよびグローバル領域を中心としたマネージャー・責任者クラスの体制強化が重要なテーマとなっています。</p><p><strong>代表プロフィール</strong></p><p>・代表取締役社長　加藤 勇志郎氏<br>1991年生まれ。東京大学卒業後、外資系コンサルティング会社のマッキンゼー・アンド・カンパニーに入社。2016年に同社マネージャーとして、日本・中国・アメリカ・オランダなどグローバルで、製造業メーカーを多方面から支援するプロジェクトをリード。特に、重工業、大型輸送機器、建設機械、医療機器、消費財を始めとする大手メーカーに対して購買・調達改革をサポートした他、IoT/Industry4.0領域を立ち上げ時から牽引。製造業分野の持つポテンシャルに惹かれ、2017年11月にキャディ株式会社を創業。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 ビジネス職：オープンポジション</div>
+          <div class="job-preview">バックグラウンドやご意向に合わせて最適なポジションを提案</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>【キャディについて】</strong></p><p>100年以上イノベーションが起きてない製造業のサプライチェーンを変革！<br>〜多重下請け構造から&quot;強み&quot;で繋がるフラットな構造へ〜</p><p>&quot;モノづくり産業のポテンシャルを解放する&quot;をミッションに掲げ、キャディは調達生産機能の外部集約化支援および図面を始めとする重要データの内部資産化支援を行うサービスの提供により、製造業のサプライチェーンの変革に挑んでいます。小さな町工場も、歴史ある大規模メーカーも、創立まもないベンチャーも。すべてのモノづくり企業が強みを活かして輝き、新たな価値がたくさん生まれる。そんな未来を切り拓くために、私たちは挑み続けます。</p><p><strong>【募集要項】</strong></p><p>オープンポジションでの募集です。バックグラウンドやご意向に合わせて、ご経験を活かせそうなポジションをご提案します。</p><p>選考の中で最適なポジションを一緒に探すことも可能です。場合によっては、事業開発/経営企画/営業/オペレーションなど、ご経験に応じて複数ご提案させていただくこともございます。</p><p>キャディでは未経験の職種にチャレンジするメンバーも多くいます。迷った際には、お気軽にオープンポジションよりご応募ください。</p><p>※なお、この職種に応募するには、ビジネスレベルの日本語(日本語能力試験N1以上)が必須です。</p><p><strong>求める人物像</strong></p><ul><li>キャディのミッション、ビジョン、カルチャーに強く共感いただける方</li><li>社会課題解決への意欲がある方</li><li>仮説構築力、抽象化思考力に長けた方</li><li>素早く検証するフットワークがある方</li></ul><p>キャディでは、大胆・卓越・一丸・至誠という4つの価値観を体現できる人を求めています。応募要件の経験に完全には一致しない場合でも、こういった能力や経験が活かせるんじゃないか、と思われる方は是非ご応募ください。課題に真正面から向き合い、徹底的に考え抜き、チームで一丸となって課題解決に取り組む。そんな組織を当事者として一緒に作っていきたいという方を歓迎します。</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://caddi-inc.com/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://speakerdeck.com/caddi_eng/caddi-recruit-202108" target="_blank">📊 会社説明資料</a><a class="lbtn lbtn-out" href="https://www.youtube.com/watch?v=t_kPudq7UW8" target="_blank">🎥 ブランドムービー</a></div>
+</div></div>
+
+<div class="card" id="relive"><div class="card-inner">
+  <div class="badges"><span class="badge">海外事業マネージャー</span><span class="badge badge-blue">当面IPO予定なし</span></div>
+  <div class="co-name">株式会社りらいぶ</div>
+  <div class="co-url"><a href="https://www.reliveshirts.com/" target="_blank">https://www.reliveshirts.com/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒981-3212 宮城県仙台市泉区長命ヶ丘3-27-3 オメガコートビル1F</td></tr><tr><th>東京オフィス</th><td>東京都台東区東上野6-16-10 KBUビル4F</td></tr><tr><th>前期売上</th><td>約70億円(2023年7月期)</td></tr><tr><th>今期中間売上</th><td>約170億円(2024年7月期中間)</td></tr><tr><th>上場区分</th><td>未上場(当面IPO予定なし)</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>★社長リレーション</li><li>YouTube『令和の虎』にて大ブレイクした急成長企業</li><li>前期年商77億円、前年比約2.4倍の成長</li><li>キャッシュリッチで当面はIPO予定なし</li><li>組織や人事制度をこれから作っていくフェーズ</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">仙台に拠点を置き、着るだけで身体機能が向上する「リライブシャツ」の製造・販売を行っています。「身に着けるだけで身体の軸がしっかりして柔軟性が増す。たくさんの筋肉が協力して無理なく大きな力を出せる」という効果を生むとして、患者の抱き起こしなど体に負担の大きい動作を繰り返す介護業界内で「動きが楽になる」と評判となり、発売2年足らずで累計15万着を突破。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>仙台に拠点を置き、着るだけで身体機能が向上する&quot;リライブシャツ&quot;の製造・販売を行っています。&quot;身に着けるだけで身体の軸がしっかりして柔軟性が増す。たくさんの筋肉が協力して無理なく大きな力を出せる&quot;という効果を生むとして、患者の抱き起こしなど体に負担の大きい動作を繰り返す介護業界内で&quot;動きが楽になる&quot;と評判となり、発売2年足らずで累計15万着を突破。シャツやパンツ、スパッツなどのラインナップがあり、ジュニアから高齢者、俳優の山田孝之、アーティストの赤西仁、元K-1日本王者の小比類巻貴之、元メジャーリーガーの岡島秀樹、PGAツアープロ通算7勝の今野康晴など著名人、トップアスリートまで支持を得ています。</p><p>同社は宮城県から医療機器製造業者として認可を受けており、全国にECサイトを通じて通販を行うほか、全国の販売店への卸売りも行っています。</p><p><strong>成長実績</strong></p><p>社長はYouTube番組&quot;令和の虎&quot;に虎として出演し、一躍注目を集めました。前期(2023年7月期)の売上は約70億円でしたが、今期(2024年7月期中間)には約170億円へと急成長し、前年比約2.4倍と、年々売上を大きく伸ばしています。</p><p>テレビショッピングやCMに加え、BtoB領域への展開も進み、事業規模の拡大に伴い、体制強化およびコーポレートガバナンスの整備を進めているフェーズです。</p><p><strong>代表プロフィール</strong></p><p>・代表取締役　佐々木 貴史氏<br>&quot;リライブシャツ&quot;開発者。1961年7月6日福島県郡山市生まれ。介護士の妹が、1日に幾度もお年寄りを抱き起こしたり、ベッドから車いすに移動させる重労働の行為で体が悲鳴を上げ、志半ばで退職したことに心を痛める。2017年に&quot;身体機能研究所&quot;を設立。親しんできた中国武術からヒントを得て&quot;痛みの緩和&quot;や&quot;動きのサポートに効果のあるテーピングの手法をヒントに、仲間と試作を重ね、&quot;リライブウェア&quot;を開発。2019年、アパレル製品として特許取得、意匠商標を登録。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 海外事業マネージャー(部長候補)</div>
+          <div class="job-preview">海外拠点立ち上げから代理店開拓まで担当する海外事業責任者</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>台湾やインドネシアなど一部地域での販売実績が出始めており、今後はカナダやドバイ等に拠点を設け、本格的に海外展開を進める計画があります。</p><p><strong>■組織体制</strong></p><p>現在は業務委託のメンバーが3名ほどで稼働しています。日本側の責任者として入社し、将来的には海外子会社の役員を兼務する可能性もあります。</p><p><strong>■業務内容</strong></p><ul><li>カナダやドバイなどにおける現地法人・拠点の立ち上げ</li><li>各国の販売代理店(ディストリビューター)の開拓、交渉、マネジメント</li><li>日本(東京)を拠点とし、出張ベースで海外事業を統括</li></ul><p><strong>■期待役割</strong></p><ul><li>海外市場の戦略設計</li><li>商流・パートナー構築</li><li>契約・リスク管理</li></ul><p><strong>必要スキル</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>海外事業立ち上げ経験</li><li>交渉力・調整力</li><li>リスクマネジメント</li></ul><p><strong>共通人物要件(Must)</strong></p><ul><li>ミッション・ビジョンを&quot;理念&quot;ではなく&quot;事業設計&quot;として落とせる<br>┗社会的意義と収益性を同時に成立させた経験、または強い意志がある</li><li>自ら手を動かしながら、周囲を巻き込める<br>┗指示待ち・評論家ではなく、先頭に立って動ける<br>┗ただし独善ではなく、関係者を尊重しながら前に進める</li><li>正解がない環境で、仮説→実行→検証を高速で回せる<br>┗不確実性を言い訳にしない<br>┗失敗を隠さず、学習に変えられる</li><li>部門最適ではなく、全体最適で考えられる<br>┗自部署の成果が、会社全体・顧客・社会にどう影響するかまで考えられる</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏢 基本出社</span><span class="pill">✅ 副業可(条件あり)</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.reliveshirts.com/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://relive-shirt.myshopify.com/" target="_blank">🛒 公式通販サイト</a><a class="lbtn lbtn-out" href="https://www.youtube.com/watch?v=wWHq9ZXbA_s" target="_blank">🎥 令和の虎出演回</a></div>
+</div></div>
+
+<div class="card" id="credo-holdings"><div class="card-inner">
+  <div class="badges"><span class="badge">新規事業・海外事業</span><span class="badge badge-blue">N-3(IPO準備中)</span></div>
+  <div class="co-name">クレドホールディングス株式会社</div>
+  <div class="co-url"><a href="https://credo-hd.com/" target="_blank">https://credo-hd.com/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒160-0023 東京都新宿区西新宿1-13-12 西新宿昭和ビル10階</td></tr><tr><th>IPO目標</th><td>3年後のIPO</td></tr><tr><th>売上目標</th><td>250億円</td></tr><tr><th>時価総額目標</th><td>500億円</td></tr><tr><th>上場区分</th><td>未上場(N-3)</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>森本が身震いするほど久々に興奮しながらお会いした企業</li><li>取締役が社長のみの状況でCxOの採用を強化中</li><li>3年後のIPOと売上250億円、時価総額500億円を目指す急成長企業</li><li>多岐にわたる事業展開(ホテルスパ、温浴、飲食、エンタメ、人材派遣等)</li><li>国内外での事業展開(台湾、ベトナム、ニューヨーク等)</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">事業はホテルを中心とした商業施設に対し「スパ」の設置を提案するリラクゼーション事業を筆頭に、温浴施設・飲食施設の経営、エンタメ事業、ビルメンテナンス事業、人材派遣事業、産後ケアセンターなど、幅広く事業を行っています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>事業はホテルを中心とした商業施設に対し&quot;スパ&quot;の設置を提案するリラクゼーション事業を筆頭に、温浴施設・飲食施設の経営、エンタメ事業、ビルメンテナンス事業、人材派遣事業、産後ケアセンターなど、幅広く事業を行っています。社長の白井氏が持つ強力なビジョンと事業を見出す目利き力により、国内のホテルスパ・温浴施設の運営やホテル清掃受託に加え、海外では台湾やベトナムでのスパ事業展開や台湾ビルボードライブのオープンと世界展開を進めています。さらに、富裕層向けメディアの立ち上げ、美容家電やフェムテック関連プロダクトのEC・百貨店販売、日本語学校事業の海外展開構想など、多岐にわたる新規事業と既存事業の拡大を強力に推進しています。今年度は&quot;今あるものを磨いていく&quot;ことをテーマに掲げ、ホールディングス体制を強化中です。</p><p><strong>代表取締役　白井浩一氏</strong></p><p>1974年広島市生まれ。20歳で広島に創業し、26歳で東京に進出。30歳で、株式会社クレドインターナショナルを設立。国内展開と並行して2012年より台北、ニューヨーク、上海、スリランカなど海外にも進出し、ホテルスパ運営で日本最大手企業となるまでに成長させる。 豊富な実績とネットワークにより、最高級から地域密着型まで幅広いスパプロデュースやプロダクト開発を展開。</p><p><strong>各事業例</strong></p><p><strong>【ウェルネス事業】</strong><br>ホテルスパ、インルームスパを主軸にホテル内のスパやリラクゼーション施設、訪問型アロマトリートメントサービスを国内最大級の規模、そして海外にも展開しております。40か所、セラピスト2000か所を委託で運営(東京ステーションホテルやお台場ヒルトン・ロクシタンスパ全店など)また、温浴施設の経営やスパ施設のデザイン・コンサルティング事業も行っております。(名古屋市×東京芸大とのアライアンス事業も展開)</p><p><strong>【ホテル・飲食事業】</strong><br>ホテルのM&Aを強化、ほかに日本の伝統文化をカジュアルに楽しむダイニングとして、エンターテイメントレストラン『SAKURA』を、都内に3店舗(歌舞伎町、銀座、六本木)運営しています。また、2023年11月には台湾・台北に、2024年4月には名古屋に新店をオープンいたしました。『SAKURA』は今後、当社が拠点を持っているニューヨーク、ラスベガス、ロサンゼルス、バンコク、インドネシア、シンガポール、マレーシアなど、10店舗の展開を予定しています。</p><p><strong>【メディア事業】</strong><br>ホテルスパ総合検索アプリ&quot;Wellness Booker&quot;を展開・運用しております。さらに新サービスのアプリを開発中！他にもサイネージや広告の打ち出し、SNSを用いた広報活動など、弊社事業をより発展させていくための発信を行います。</p><p><strong>【エンタメ事業】</strong><br>国内最大級のエンタメビジネスコンテスト&quot;夢叶えるプロジェクト&quot;をはじめ、スパ・サウナ関連のインフルエンサーの活用やサウナアイドルの企画・運営を行っています。</p><p><strong>【スクール・人材事業】</strong><br>人材の採用や定着に関する課題を抱える企業様の力になるべく、弊社で展開している日本語学校(6校・3000人)で学ぶ外国人の人材を即戦力として育成し、派遣しています。ロスにある英語学校もM&Aするなど、コロナ禍中に１/10のコストでスクールのＭ＆Ａを強化。</p><p><strong>【産後ケア事業】</strong><br>日本初となる常設の産後ケアセンターを、2024年2月にホテル椿山荘東京に設立いたしました。産後ケアサービスとは、産後のお母様の心身の回復を目的とし、食事や運動などの母体ケアはもちろん、授乳ケアや育児の知識まで総合的にサポートするというものです。『AMATERASU』の産後ケアサービスは、ミラノ万博日本館レストランもプロデュースした柴田陽子事務所(代表：柴田陽子)の柴田陽子氏がブランドコンセプトを構築し、日本よりも深い産後ケアの歴史を持つ、台湾の産後ケアセンターが監修しています。</p><p><strong>【ビルメンテナンス事業】</strong><br>ホテル客室清掃、ホテルリフォーム、ホテル修繕、設備検査、特殊洗浄清掃、不用品リサイクルなどビルメンテナンスに関する事業を行っています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 新規事業・海外事業</div>
+          <div class="job-preview">社長が描く多様な新規事業構想と海外事業を実務で仕上げていくリーダー</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>ホテルスパ事業、メディア事業、女性向けプロダクト事業など多岐にわたるビジネスを展開し、3年半後のIPOを目指し、売上250億円、利益25億円、時価総額500億円を目標に掲げています。この成長戦略の実現には、社長が描く多様な新規事業構想と、既に進んでいる海外事業を具体的に推進・拡大していくリーダーの存在が不可欠です。</p><p>社長が豊富なアイデアと目利きで事業の種を見つけ出し、既に形を作りつつある多様な新規・海外事業を、実務で&quot;仕上げていく&quot;ことが最大のミッションとなります。</p><p>最近では、台湾でオープンした&quot;ビルボードライブ&quot;の事業をバンコクやマレーシアなど世界中に展開していく計画もあります。</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://credo-hd.com/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが内藤正徳 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
